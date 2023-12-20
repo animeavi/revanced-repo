@@ -11,9 +11,9 @@ done
 
 # Generate SHA-256 hashes
 if [ "$revanced" = 'yes' ]; then
-    sha256sum build/revanced-nonroot-signed.apk >build/SHA-256-yt.txt
+    sha256sum build/revanced-nonroot.apk >build/SHA-256-yt.txt
 fi
 
 if [ "$music" = 'yes' ]; then
-    sha256sum build/revanced-music-nonroot-*-signed.apk >build/SHA-256-ytm.txt
+    sha256sum build/revanced-music-nonroot-*.apk >build/SHA-256-ytm.txt
 fi

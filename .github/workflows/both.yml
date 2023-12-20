@@ -38,18 +38,6 @@ jobs:
       - name: Set current date as env variable
         run: echo "date_now=$(date +'%Y-%m-%d')" >> $GITHUB_ENV && echo "date_now_nodashes=$(date +'%Y%m%d')" >> $GITHUB_ENV
 
-      - uses: r0adkll/sign-android-release@v1
-        name: Sign APKs
-        with:
-          releaseDirectory: build
-          signingKeyBase64: '${{ secrets.SIGNING_KEY }}'
-          output: build/release/signed
-          alias: '${{ secrets.ALIAS }}'
-          keyStorePassword: '${{ secrets.KEY_STORE_PASSWORD }}'
-          keyPassword: '${{ secrets.KEY_PASSWORD }}'
-        env:
-          BUILD_TOOLS_VERSION: "30.0.2"
-          
       - name: Generate SHA256 checksums for the signed APK files
         run: ./scripts/sha256gen.sh -m -r
       
@@ -62,7 +50,7 @@ jobs:
           prerelease: false
           files: |
             build/SHA-256-yt.txt
-            build/revanced-nonroot-signed.apk
+            build/revanced-nonroot.apk
             vanced-microG.apk
 
       - uses: marvinpinto/action-automatic-releases@latest
@@ -74,4 +62,4 @@ jobs:
           prerelease: false
           files: |
             build/SHA-256-ytm.txt
-            build/revanced-music-nonroot-*-signed.apk
+            build/revanced-music-nonroot-*.apk
